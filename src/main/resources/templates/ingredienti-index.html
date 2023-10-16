@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Lista di TUTTI gli Ingredienti </h1>
+<a href="/ingredienti/create">CREATE NEW</a>
+	<ul>
+		<li
+			th:each="ingrediente : ${ingredienti}"
+			th:object="${ingrediente}"
+		>
+			[[*{nomeIngrediante}]]
+			<a th:href="@{/ingredienti/update/{id}(id=*{id})}" >Edit</a>
+			<form method="post" th:action="'/ingredienti/delete/'+ *{id}">
+					<input type="submit" value="Delete">
+				</form>
+		</li>
+	</ul>
+</body>
+</html>

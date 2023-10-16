@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<div class="btn btn-primary">
+		<a th:href="@{/pizzas}">Return to home</a>
+	</div>
+	<form method="post"  th:object="${pizza}">
+		<div class="">
+			<label for="nome">Nome</label>
+			<input type="text" name="nome" id="nome" minlength="4" maxlength="80" th:field="*{nome}" required>
+		</div>
+		<div>
+			<ul th:if="${#fields.hasErrors('nome')}" class="alert alert-danger list-unstyled mt-2">
+			<li th:each="error : ${#fields.errors('nome')}">[[${error}]]</li>
+		</ul>
+		</div>
+		
+		<div class="">
+			<label for="descrizione">Descrizione</label>
+			<textarea type="textarea" name="descrizione" minlength="10" maxlength="160" id="descrizione"
+				th:field="*{descrizione}"></textarea>
+		</div>
+
+		<ul th:if="${#fields.hasErrors('descrizione')}" class="alert alert-danger list-unstyled mt-2">
+			<li th:each="error : ${#fields.errors('descrizione')}">[[${error}]]</li>
+		</ul>
+		<div class="">
+			<label for="foto">url img</label>
+			<textarea type="textarea" name="foto" minlength="4" id="foto" th:field="*{foto}" required></textarea>
+		</div>
+		<ul th:if="${#fields.hasErrors('foto')}" class="alert alert-danger list-unstyled mt-2">
+			<li th:each="error : ${#fields.errors('foto')}">[[${error}]]</li>
+		</ul>
+		<div class="">
+			<label for="prezzo">prezzo</label>
+			<input type="number" name="prezzo" min="2.0" id="prezzo" th:field="*{prezzo}" required></input>
+		</div>
+		<ul th:if="${#fields.hasErrors('prezzo')}" class="alert alert-danger list-unstyled mt-2">
+			<li th:each="error : ${#fields.errors('prezzo')}">[[${error}]]</li>
+		</ul>
+		<div class="">
+
+			<input type="submit"></input>
+		</div>
+	</form>
+</body>
+
+</html>

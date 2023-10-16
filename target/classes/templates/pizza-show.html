@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html th:object="${pizza}">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+
+	<title>[[*{nome}]]</title>
+</head>
+
+
+<body>
+	<div>
+		<ul>
+			<li>
+				[[*{nome}]]
+			</li>
+			<li>
+				[[*{descrizione}]]
+			</li>
+			<li>
+				[[*{prezzo}]]
+			</li>
+		</ul>
+	</div>
+	<div class="btn btn-primary">
+		<a th:href="@{'/offerte/' + *{id} + '/nuovaOfferta'}">Create
+			a new offer</a>
+
+	</div>
+	<div>
+		<ul>
+			<li th:each="singolaOfferta : *{offerte}" th:object="${singolaOfferta}">
+				TitoloOfferta: [[*{titolo}]]<br>
+				DataInizio: [[*{dataInizio}]]<br>
+				DataFine: [[*{dataInizio}]]
+				<a th:href="@{/offerte/edit/{id}(id=*{id})}">
+					edit
+				</a>
+				<form method="post" th:action="'/offerte/delete/'+ *{id}">
+					<input type="submit" value="Delete">Delete
+				</form>
+
+	</div>
+	</li>
+	</ul>
+	<img th:src='*{foto}' alt="dsf">
+</body>
+
+</html>

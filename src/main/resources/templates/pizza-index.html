@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+
+	<h1>Pizzas:</h1>
+	<form>
+		<input type="text" name="nome" id="name" value="">
+		<input type="submit" id="name">
+	</form>
+	<div class="btn btn-primary">
+		<a th:href="@{/pizzas/create}" sec:authorize="hasAnyAuthority('ADMIN')">nuova pizza</a>
+	</div>
+	<ul th:if="${pizzas.size > 0}">
+		<li th:each="pizza : ${pizzas}" th:object="${pizza}">
+			<p> [[*{nome}]] - [[*{prezzo}]] €</p>
+			<div class="btn btn-primary">
+				<a th:href="'/pizzas/' + ${pizza.getId()}">view</a>
+			</div>
+			<div class="btn btn-primary">
+				<a th:href="'/pizzas/update/' + ${pizza.getId()}" sec:authorize="hasAnyAuthority('ADMIN')">edit</a>
+			</div>
+			<form method="post" sec:authorize="hasAnyAuthority('ADMIN')"
+				th:action="'/pizzas/delete/'+ ${pizza.getId()}">
+				<input type="submit" id="delete">delete
+
+			</form>
+
+		</li>
+	</ul>
+</body>
+
+</html>

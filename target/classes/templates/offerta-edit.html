@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="btn btn-primary">
+		<a th:href="@{/pizzas}">Return to home</a>
+	</div>
+	
+			<form method="post" th:object="${offerta}">
+				
+				<div class="my-4">
+					<div >
+						<label for="titolo" >titolo: </label>
+						<input type="text" name="titolo" id="titolo"  th:field="*{titolo}" required>
+					</div>
+				
+				</div>
+				
+				<div >
+					<div >
+						<label for="dataInizio">data Inizio: </label>
+						<input type="date" name="dataInizio" id="dataInizio"  th:field="*{dataInizio}" required>
+					</div>
+				
+				</div>
+				
+				<div >
+					<div>
+						<label for="dataFine" >data Fine: </label>
+						<input type="date" name="dataFine" id="dataFine" th:field="*{dataFine}" required>
+					</div>
+				</div>
+				
+				<br />
+				
+				<button  type="submit">Insert</button>
+				
+			</form>
+</body>
+</html>
