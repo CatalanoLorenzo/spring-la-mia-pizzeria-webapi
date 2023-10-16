@@ -48,7 +48,7 @@ public class Pizza {
 	@ManyToMany
 	@JsonManagedReference
 	private List<Ingrediente> ingredientis;
-
+	public Pizza() {}
 	public Pizza(PizzaDTO pizzaDto) {
 		setNome(pizzaDto.getNome());
 		setDescrizione(pizzaDto.getDescrizione());

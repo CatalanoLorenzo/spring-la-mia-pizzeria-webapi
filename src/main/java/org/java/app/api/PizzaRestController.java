@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/")
+@RequestMapping("/api")
 public class PizzaRestController {
 
 	@Autowired
 	private PizzaService pizzaService;
 
-	@GetMapping("tuttelepizze")
+	@GetMapping("/tuttelepizze")
 	public ResponseEntity<List<Pizza>> getAllPizzaAPI(){
 		
 		List<Pizza> pizze = pizzaService.findAll();
@@ -89,6 +89,7 @@ public class PizzaRestController {
 			pizzaService.save(pizza);
 			
 			return new ResponseEntity<>(pizza, HttpStatus.OK);
+			
 		} catch (Exception e) {
 			
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
