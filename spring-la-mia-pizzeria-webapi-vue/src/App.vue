@@ -21,7 +21,7 @@ function clearCreate() {
 }
 function storePizza() {
 
-  axios.post(API_URL + "/pizzas", newPizza.value)
+  axios.post(API_URL +id + "/nuovaOfferta", newPizza.value)
     .then(res => {
 
       const data = res.data;
@@ -32,7 +32,7 @@ function storePizza() {
 }
 function pizzaDelete(id) {
 
-  axios.delete(API_URL + "/pizzas/" + id)
+  axios.delete(API_URL + "/delete/" + id)
     .then(res => {
 
       getAllPizzas();
@@ -41,7 +41,7 @@ function pizzaDelete(id) {
 }
 function getAllPizzas() {
 
-  axios.get(API_URL + "/pizzas")
+  axios.get(API_URL)
     .then(res => {
 
       const data = res.data;
