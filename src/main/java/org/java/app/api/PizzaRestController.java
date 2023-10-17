@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -27,10 +28,11 @@ public class PizzaRestController {
 	@Autowired
 	private PizzaService pizzaService;
 
-	@GetMapping("/tuttelepizze")
-	public ResponseEntity<List<Pizza>> getAllPizzaAPI(){
+	@GetMapping()
+	public ResponseEntity<List<Pizza>> getAllPizzaAPI(
+			@RequestParam (required = false,name= "q") String query){
 		
-		List<Pizza> pizze = pizzaService.findAll();
+		List<Pizza> pizze = query ==null ? pizzaService.findAll():pizzaService.findByName(query);
 		
 		return new ResponseEntity<List<Pizza>>(pizze,HttpStatus.OK);
 	}
